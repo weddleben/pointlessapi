@@ -1,0 +1,6 @@
+# build directories
+bin/
+obj/
+
+# config files
+appsettings*.json
