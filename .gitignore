@@ -1,6 +1,7 @@
 # build directories
 bin/
 obj/
+publish/
 
 # config files
 appsettings*.json
