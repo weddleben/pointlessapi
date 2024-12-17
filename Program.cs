@@ -13,6 +13,25 @@ app.MapGet("/sams-version-is-better", () =>
 }
 );
 
+app.MapGet("/scramble", (HttpContext context) =>
+{
+    var query = context.Request.Query["word"];
+    string scrambled = new string(query.ToString().ToArray());
+    string newString = "";
+    List<char> repalceable = new List<char>{'a', 'e', 'i', 'o', 'u'};
+    foreach(char letter in scrambled) {
+        if (repalceable.Contains(letter)) {
+            newString += "🌮";
+        }
+        else {
+            newString += letter;
+        }
+    }
+    // string result = new string(newString.ToArray());
+    return Results.Json(new { message = newString });
+});
+
+
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));
 
 app.Run();
