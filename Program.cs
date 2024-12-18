@@ -1,3 +1,5 @@
+using Magic;
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -29,6 +31,12 @@ app.MapGet("/scramble", (HttpContext context) =>
     }
     // string result = new string(newString.ToArray());
     return Results.Json(new { message = newString });
+});
+
+app.MapGet("/magic8", () =>
+{
+    string response = Magic.MagicEight.responses();
+    return Results.Json(new { message = response });
 });
 
 
