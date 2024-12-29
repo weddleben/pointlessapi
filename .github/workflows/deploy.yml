@@ -25,7 +25,8 @@ jobs:
       - name: ZIP
         run: |
           cd .
-          zip -r application.zip ./publish .ebextensions -x "*.git*"
+          zip -r application.zip ./publish/* .ebextensions/ -x "*.git*"
+
         shell: bash
 
       - name: inspect
