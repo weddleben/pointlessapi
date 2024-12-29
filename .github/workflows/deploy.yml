@@ -28,9 +28,10 @@ jobs:
           zip -r application.zip ./publish .ebextensions -x "*.git*"
         shell: bash
 
-      - name: List files in publish directory
+      - name: inspect
         run: |
-          ls -al ./publish
+          unzip -l application.zip
+
       
 
       - name: Deploy
