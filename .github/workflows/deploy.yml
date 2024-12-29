@@ -30,12 +30,6 @@ jobs:
 
         shell: bash
 
-      - name: inspect
-        run: |
-          unzip -l application.zip
-
-      
-
       - name: Deploy
         uses: einaregilsson/beanstalk-deploy@v21
         with:
