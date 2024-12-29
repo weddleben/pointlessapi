@@ -1,0 +1,40 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0
+
+      - name: Publish
+        run: |
+          dotnet publish -c Release -o ./publish
+
+      - name: ZIP
+        run: |
+          cd ./publish
+          zip -r ../application.zip . -x "*.git*"
+        shell: bash
+
+      - name: Deploy
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: pointlessv3
+          environment_name: Pointlessv3-env
+          region: us-east-2
+          version_label: ${{ github.sha }}
+          deployment_package: application.zip
