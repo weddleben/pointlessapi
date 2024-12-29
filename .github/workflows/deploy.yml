@@ -28,6 +28,11 @@ jobs:
           zip -r application.zip ./publish .ebextensions -x "*.git*"
         shell: bash
 
+      - name: List files in publish directory
+        run: |
+          ls -al ./publish
+      
+
       - name: Deploy
         uses: einaregilsson/beanstalk-deploy@v21
         with:
