@@ -24,8 +24,9 @@ jobs:
 
       - name: ZIP
         run: |
-          cd .
-          zip -r application.zip ./publish/* .ebextensions/ -x "*.git*"
+          cp -r .ebextensions ./publish/
+          cd ./publish
+          zip -r ../application.zip * -x "*.git*"
 
         shell: bash
 
