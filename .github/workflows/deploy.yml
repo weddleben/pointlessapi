@@ -30,6 +30,7 @@ jobs:
           cd ~
           ls -l
           git -C pointlessapi pull || git clone https://github.com/weddleben/pointlessapi.git
+          cd pointlessapi
           # Publish
           dotnet publish -c Release -r linux-x64 -o /home/ec2-user/pointlessapi/publish
     
