@@ -2,6 +2,8 @@ using Magic;
 
 // mah mah mah
 
+// this is a comment, man
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add CORS policy to allow all origins
