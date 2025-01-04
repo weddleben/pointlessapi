@@ -14,9 +14,10 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Set up SSH key
-      uses: webfactory/ssh-agent@v0.9.0
-      with:
-        ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+      run: |
+        mkdir -p ~/.ssh
+        echo "$EC2_SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
 
     - name: Add EC2 to known hosts
       run: |
@@ -26,7 +27,7 @@ jobs:
     - name: Deploy to EC2
       run: |
         # SSH
-        ssh ec2-user@pointlessapi.com
+        ssh -i ~/.ssh/id_rsa ec2-user@pointlessapi.com
         cd ~
         ls -l
         git -C pointlessapi pull || git clone https://github.com/weddleben/pointlessapi.git
