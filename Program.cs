@@ -1,7 +1,22 @@
 using Magic;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add CORS policy to allow all origins
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy.AllowAnyOrigin() // Allows all origins
+              .AllowAnyMethod() // Allows all HTTP methods (GET, POST, etc.)
+              .AllowAnyHeader(); // Allows all headers
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors("AllowAll");
+
 
 app.MapMethods("/", new[] { "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD" }, (HttpContext context) =>
 {
@@ -38,7 +53,6 @@ app.MapGet("/magic8", () =>
     string response = Magic.MagicEight.responses();
     return Results.Json(new { message = response });
 });
-
 
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));
 
