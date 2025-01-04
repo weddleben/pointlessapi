@@ -28,6 +28,7 @@ jobs:
         # SSH
         ssh ec2-user@pointlessapi.com
         cd ~
+        ll
         git -C pointlessapi pull || git clone https://github.com/weddleben/pointlessapi.git
 
         # Publish
