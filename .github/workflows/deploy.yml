@@ -26,18 +26,17 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        # SSH
-        ssh -i ~/.ssh/id_rsa ec2-user@pointlessapi.com
-        cd ~
-        ls -l
-        git -C pointlessapi pull || git clone https://github.com/weddleben/pointlessapi.git
-
-        # Publish
-        dotnet publish -c Release -r linux-x64 -o /home/ec2-user/pointlessapi/publish
-
-        # Move the published files
-        sudo mkdir -p /var/www/pointless
-        sudo cp -r /home/ec2-user/pointlessapi/publish/* /var/www/pointless/
-
-        # Restart
-        sudo systemctl restart pointless
+        ssh -i ~/.ssh/id_rsa ec2-user@pointlessapi.com << 'EOF'
+          cd ~
+          ls -l
+          git -C pointlessapi pull || git clone https://github.com/weddleben/pointlessapi.git
+          # Publish
+          dotnet publish -c Release -r linux-x64 -o /home/ec2-user/pointlessapi/publish
+    
+          # Move the published files
+          sudo mkdir -p /var/www/pointless
+          sudo cp -r /home/ec2-user/pointlessapi/publish/* /var/www/pointless/
+    
+          # Restart the service
+          sudo systemctl restart pointless
+        EOF
