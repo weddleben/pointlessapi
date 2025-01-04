@@ -26,7 +26,7 @@ jobs:
     - name: Deploy to EC2
       run: |
         # SSH
-        ssh ec2-user@pointlessapi.com << 'EOF'
+        ssh ec2-user@pointlessapi.com
         cd ~
         git -C pointlessapi pull || git clone https://github.com/weddleben/pointlessapi.git pointlessapi
 
