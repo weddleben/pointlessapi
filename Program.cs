@@ -52,6 +52,12 @@ app.MapGet("/magic8", () =>
     return Results.Json(new { message = response });
 });
 
+app.MapGet("/istiktokshutdown", () => 
+{
+    return Results.Json(new { message = "Sadly, no" });
+    }
+);
+
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));
 
 app.Run();
