@@ -54,7 +54,7 @@ app.MapGet("/magic8", () =>
 
 app.MapGet("/istiktokshutdown", () => 
 {
-    return Results.Json(new { message = "Sadly, no" });
+    return Results.Json(new { message = "Yes! Go touch grass!" });
     }
 );
 
