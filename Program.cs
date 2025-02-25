@@ -58,6 +58,12 @@ app.MapGet("/istiktokshutdown", () =>
     }
 );
 
+app.MapGet("/isnowlunchtime", () => 
+{
+    return Results.Json(new { message = "it's always lunch time somewhere" });
+    }
+);
+
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));
 
 app.Run();
