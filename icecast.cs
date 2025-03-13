@@ -10,8 +10,8 @@ class Icecast
     private static async Task<string> CallIcecast()
     {
         HttpClient client = new HttpClient();
-        string icecastUsername = Environment.GetEnvironmentVariable("icecast_user");
-        string icecastPassword = Environment.GetEnvironmentVariable("icecast_pass");
+        string? icecastUsername = Environment.GetEnvironmentVariable("icecast_user");
+        string? icecastPassword = Environment.GetEnvironmentVariable("icecast_pass");
         string auth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{icecastUsername}:{icecastPassword}"));
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth);
         string url = "http://npl.streamguys1.com/admin/stats.xml";
@@ -49,10 +49,10 @@ class Icecast
             var sources = doc.Descendants("source");
             foreach (var source in sources)
             {
-                string mount = source.Attribute("mount").Value;
+                string? mount = source.Attribute("mount")?.Value;
                 if (mount == "/live")
                 {
-                    string title = source.Element("title").Value;
+                    string? title = source.Element("title")?.Value;
                     Console.WriteLine(title);
                     return title;
                 }
