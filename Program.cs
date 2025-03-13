@@ -64,6 +64,15 @@ app.MapGet("/isnowlunchtime", () =>
     }
 );
 
+app.MapPost("/ntl", static async () =>
+{
+   string title = await Icecast.Icecast.NowPlaying();
+    
+
+    return Results.Json(new {title = title});
+}
+);
+
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));
 
 app.Run();
