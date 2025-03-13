@@ -12,6 +12,8 @@ class Icecast
         HttpClient client = new HttpClient();
         string? icecastUsername = Environment.GetEnvironmentVariable("icecast_user");
         string? icecastPassword = Environment.GetEnvironmentVariable("icecast_pass");
+        Console.WriteLine(icecastUsername);
+        Console.WriteLine(icecastPassword);
         string auth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{icecastUsername}:{icecastPassword}"));
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth);
         string url = "http://npl.streamguys1.com/admin/stats.xml";
