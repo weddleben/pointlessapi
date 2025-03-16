@@ -12,20 +12,14 @@ class Icecast
         HttpClient client = new HttpClient();
         string? icecastUsername = Environment.GetEnvironmentVariable("icecast_user");
         string? icecastPassword = Environment.GetEnvironmentVariable("icecast_pass");
-        Console.WriteLine(icecastUsername);
-        Console.WriteLine(icecastPassword);
         string auth = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{icecastUsername}:{icecastPassword}"));
         client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", auth);
         string url = "http://npl.streamguys1.com/admin/stats.xml";
         try
         {
-
             HttpResponseMessage response = await client.GetAsync(url);
-
-            // Check if the request was successful
             if (response.IsSuccessStatusCode)
             {
-                // Read the response as a string
                 string result = await response.Content.ReadAsStringAsync();
                 return result;
             }
