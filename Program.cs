@@ -73,6 +73,13 @@ app.MapPost("/ntl", static async () =>
 }
 );
 
+app.MapGet("/twitter", (HttpContext context) => {
+    string? username = context.Request.Query["username"];
+
+    return Results.Redirect($"https://twitter.com/{username}");
+}
+);
+
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));
 
 app.Run();
