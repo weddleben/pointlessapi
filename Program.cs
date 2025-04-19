@@ -80,6 +80,14 @@ app.MapGet("/twitter", (HttpContext context) => {
 }
 );
 
+app.MapGet("/movieclub", ()=> {
+string movies = "iqdit.cc/c7185b8";
+string reviews = "iqdit.cc/fdce562";
+string members = "iqdit.cc/e3f1a85";
+return Results.Json(new {movies = movies, reviews = reviews, members = members});
+}
+);
+
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));
 
 app.Run();
