@@ -89,7 +89,9 @@ return Results.Json(new {movies = movies, reviews = reviews, members = members})
 );
 
 app.MapGet("/talktothehand", () => {
-    return Results.Json(new {answer = "the answer is no"});
+    string no = Magic.TalkToTheHand.responses();
+    Console.WriteLine(no);
+    return Results.Json(new {answer = no});
 });
 
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));

@@ -33,4 +33,35 @@ namespace Magic
         return responses[index];
     }
 }
+
+    class TalkToTheHand
+    {
+        public static string responses()
+        {
+            List<string> responses = new List<string> {
+            "Not now!",
+            "No. Nope. Never.",
+            "That was a no. Again.",
+            "No, as per usual.",
+            "Yes, but no.",
+            "No. Not while I'm alive",
+            "No. It's like yes but means no.",
+            "Let me think about it. Actually, it's a no.",
+            "No because it works for me.",
+            "Absolutely! (not)",
+            "As IF!",
+            "Read the room. It's a no.",
+            "I will answer you in Spanish: No.",
+            "It's a no from me dog.",
+            "How about no.",
+            "Thinking....yeah it's still a no.",
+            "Not now! (or ever)"
+            };
+
+            int length = responses.Count();
+            Random random = new Random();
+            int index = random.Next(0, length);
+            return responses[index];
+        }
+    }
 }
