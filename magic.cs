@@ -1,5 +1,5 @@
 
-namespace Magic
+namespace randomize
 {class MagicEight
 {
     public static string responses()

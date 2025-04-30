@@ -48,7 +48,7 @@ app.MapGet("/scramble", (HttpContext context) =>
 
 app.MapGet("/magic8", () =>
 {
-    string response = Magic.MagicEight.responses();
+    string response = randomize.MagicEight.responses();
     return Results.Json(new { message = response });
 });
 
@@ -89,7 +89,7 @@ return Results.Json(new {movies = movies, reviews = reviews, members = members})
 );
 
 app.MapGet("/talktothehand", () => {
-    string no = Magic.TalkToTheHand.responses();
+    string no = randomize.TalkToTheHand.responses();
     Console.WriteLine(no);
     return Results.Json(new {answer = no});
 });
