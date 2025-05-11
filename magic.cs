@@ -55,7 +55,18 @@ namespace randomize
             "It's a no from me dog.",
             "How about no.",
             "Thinking....yeah it's still a no.",
-            "Not now! (or ever)"
+            "Not now! (or ever)",
+            "I want to say yes but it's still a no.",
+            "When hell freezes over (no).",
+            "Yeah of course not!",
+            "Yes, it's still a no.",
+            "Sure but no",
+            "You've heard of yes? Well meet no.",
+            "No, but in Italian.",
+            "No for success.",
+            "I was going to say no, but no thank you is more polite.",
+            "No incoming.",
+            "I got no yeses."
             };
 
             int length = responses.Count();
