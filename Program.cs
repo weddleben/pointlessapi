@@ -100,11 +100,19 @@ app.MapGet("istwitterfunctioningasintended", async () =>
     string url = "https://twitter.com";
     HttpResponseMessage response = await client.GetAsync(url);
     int statusCode = (int)response.StatusCode;
-    if (statusCode == 200) {
-        return Results.Json(new {answer = "The status code is 200, but who knows."});
+    if (statusCode == 200)
+    {
+        return Results.Json(new { answer = "The status code is 200, but who knows." });
     }
-    return Results.Json(new {answer = $"The status code is {statusCode}, ngmi."});
+    return Results.Json(new { answer = $"The status code is {statusCode}, ngmi." });
 });
+
+app.MapGet("weather", async () =>
+{
+    string forecast = await Weather.RunAsync();
+    return forecast;
+}
+);
 
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));
 
