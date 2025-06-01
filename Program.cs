@@ -110,7 +110,7 @@ app.MapGet("istwitterfunctioningasintended", async () =>
 app.MapGet("weather", async () =>
 {
     string forecast = await Weather.RunAsync();
-    return forecast;
+    return Results.Json(new {forecast = forecast});
 }
 );
 
