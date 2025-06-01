@@ -15,14 +15,14 @@ public class Weather
         for (int attempts = 0; attempts < 5; attempts++)
         {
             var (lat, lon) = GetRandomUSCoordinates();
-            var (forecastURL, city, state) = await GetForecastUrl(lat, lon);
+            var (forecastURL, location) = await GetForecastUrl(lat, lon);
 
             if (forecastURL == null) continue;
 
             var forecast = await GetHourlyForecast(forecastURL);
             if (forecast == null) continue;
 
-            return $"It is {forecast}°F in {city}, {state}";
+            return $"It is {forecast} in {location}";
         }
 
         return "Unable to retrieve forecast after several attempts.";
@@ -42,7 +42,7 @@ public class Weather
     }
 
 
-    private static async Task<(string forecastUrl, string city, string state)> GetForecastUrl(double lat, double lon)
+    private static async Task<(string forecastUrl, string location)> GetForecastUrl(double lat, double lon)
     {
         string url = $"https://api.weather.gov/points/{lat},{lon}";
         _http.DefaultRequestHeaders.UserAgent.ParseAdd("DarthVader");
@@ -51,7 +51,7 @@ public class Weather
         {
             var response = await _http.GetAsync(url);
             if (response.StatusCode != HttpStatusCode.OK)
-                return (null, null, null);
+                return (null, null);
 
             var responseString = await response.Content.ReadAsStringAsync();
             Console.WriteLine(response.Headers);
@@ -73,11 +73,13 @@ public class Weather
                                      .GetProperty("state")
                                      .GetString();
 
-            return (forecastURL, city, state);
+            string location = $"{city}, {state}";
+
+            return (forecastURL, location);
         }
         catch
         {
-            return (null, null, null);
+            return (null, null);
         }
     }
 
@@ -103,8 +105,15 @@ public class Weather
                                   .GetProperty("periods")[0]
                                   .GetProperty("temperature")
                                   .GetInt16();
+            string temperatureUnit = json.RootElement
+                                  .GetProperty("properties")
+                                  .GetProperty("periods")[0]
+                                  .GetProperty("temperatureUnit")
+                                  .GetString();
 
-            return temperature.ToString();
+            string retVal = temperature.ToString() + "°" + temperatureUnit;
+
+            return retVal;
         }
         catch
         {
