@@ -15,18 +15,29 @@ var app = builder.Build();
 
 app.UseCors("AllowAll");
 
+app.MapGet("/", () =>
+{
+    var endpoints = new List<Endpoints>
+    {
+        new Endpoints {endpoint = "/", name = "Home", description = "Welcome to my pointless API"},
+        new Endpoints {endpoint = "/weather", name = "Random Weather", description = "Get the current weather from a random city in the USA."},
+        new Endpoints {endpoint = "/magic8", name="Magic 8 Ball", description = "Get the answer to all your burning questions."},
+        new Endpoints {endpoint = "/talktothehand", name="Talk to the Hand (no)", description="There's always another way to say no."},
+        new Endpoints {endpoint = "/istiktokshutdown", name = "Is TikTok Shut Down", description = "The latest, up-to-date news on whether TikTok is shut down or not."},
+        new Endpoints {endpoint = "/scramble?word=", name = "Vowel Scrambler", description = "Substitute a taco emoji for all vowels in the word."},
+        new Endpoints {endpoint = "/istwitterfunctioningasintended", name = "Is Twitter Functioning as Intended", description = "Find out whether Twitter is working or not."},
+        new Endpoints {endpoint = "/twitter?username=", name="Twitter Redirect", description="Redirect to a twitter profile."},
+        new Endpoints {endpoint = "/movieclub", name = "Movie Club Endpoints", description = "Find all the #movieClub endpoints"},
+        new Endpoints {endpoint = "/isnowlunchtime", name="Is it Lunchtime", description = "Find out whether it is lunchtime."}
+    };
+    return Results.Json(new { endpoints = endpoints });
+});
 
-app.MapMethods("/", new[] { "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD" }, (HttpContext context) =>
+app.MapMethods("/", new[] { "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD" }, (HttpContext context) =>
 {
     var method = context.Request.Method;
     return Results.Json(new { message = $"Congratulations on your {method} request!"}, statusCode: 200);
 });
-
-app.MapGet("/sams-version-is-better", () => 
-{
-    return Results.Redirect("https://pointlessapi.azurewebsites.net/randomhttpcode.json");
-}
-);
 
 app.MapGet("/scramble", (HttpContext context) =>
 {
@@ -107,10 +118,10 @@ app.MapGet("istwitterfunctioningasintended", async () =>
     return Results.Json(new { answer = $"The status code is {statusCode}, ngmi." });
 });
 
-app.MapGet("weather", async () =>
+app.MapGet("/weather", async () =>
 {
     string forecast = await Weather.RunAsync();
-    return Results.Json(new {forecast = forecast});
+    return Results.Json(new { forecast = forecast });
 }
 );
 
