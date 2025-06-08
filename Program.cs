@@ -27,8 +27,7 @@ app.MapGet("/", () =>
         new Endpoints {endpoint = "/scramble?word=", name = "Vowel Scrambler", description = "Substitute a taco emoji for all vowels in the word."},
         new Endpoints {endpoint = "/istwitterfunctioningasintended", name = "Is Twitter Functioning as Intended", description = "Find out whether Twitter is working or not."},
         new Endpoints {endpoint = "/twitter?username=", name="Twitter Redirect", description="Redirect to a twitter profile."},
-        new Endpoints {endpoint = "/movieclub", name = "Movie Club Endpoints", description = "Find all the #movieClub endpoints"},
-        new Endpoints {endpoint = "/isnowlunchtime", name="Is it Lunchtime", description = "Find out whether it is lunchtime."}
+        new Endpoints {endpoint = "/movieclub", name = "Movie Club Endpoints", description = "Find all the #movieClub endpoints"}
     };
     return Results.Json(new { endpoints = endpoints });
 });
@@ -66,12 +65,6 @@ app.MapGet("/magic8", () =>
 app.MapGet("/istiktokshutdown", () => 
 {
     return Results.Json(new { message = "I don't even know any more..." });
-    }
-);
-
-app.MapGet("/isnowlunchtime", () => 
-{
-    return Results.Json(new { message = "it's always lunch time somewhere" });
     }
 );
 
