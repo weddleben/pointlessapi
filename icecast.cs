@@ -49,7 +49,6 @@ class Icecast
                 if (mount == "/live")
                 {
                     string? title = source.Element("title")?.Value;
-                    Console.WriteLine(title);
                     return title;
                 }
             }

@@ -94,7 +94,6 @@ return Results.Json(new {movies = movies, reviews = reviews, members = members})
 
 app.MapGet("/talktothehand", () => {
     string no = randomize.TalkToTheHand.responses();
-    Console.WriteLine(no);
     return Results.Json(new {answer = no});
 });
 
