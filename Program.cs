@@ -68,14 +68,14 @@ app.MapGet("/istiktokshutdown", () =>
     }
 );
 
-app.MapPost("/ntl", static async () =>
-{
-   string title = await Icecast.Icecast.NowPlaying();
+// app.MapPost("/ntl", static async () =>
+// {
+//    string title = await Icecast.Icecast.NowPlaying();
     
 
-    return Results.Json(new {title = title});
-}
-);
+//     return Results.Json(new {title = title});
+// }
+// );
 
 app.MapGet("/twitter", (HttpContext context) => {
     string? username = context.Request.Query["username"];
