@@ -122,6 +122,6 @@ app.MapGet("/elbowfetish", () =>
     return Results.Redirect("https://twitter.com/LaFemmeFrank");
 });
 
-app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/ben__weddle" }));
+app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/BenjaminMuses" }));
 
 app.Run();
