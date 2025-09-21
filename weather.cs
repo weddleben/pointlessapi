@@ -12,7 +12,7 @@ public class Weather
 
     public static async Task<string> RunAsync()
     {
-        for (int attempts = 0; attempts < 5; attempts++)
+        for (int attempts = 0; attempts < 8; attempts++)
         {
             var (lat, lon) = GetRandomUSCoordinates();
             var (forecastURL, location) = await GetForecastUrl(lat, lon);
