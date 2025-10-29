@@ -27,7 +27,8 @@ app.MapGet("/", () =>
         new Endpoints {endpoint = "/scramble?word=", name = "Vowel Scrambler", description = "Substitute a taco emoji for all vowels in the word."},
         new Endpoints {endpoint = "/istwitterfunctioningasintended", name = "Is Twitter Functioning as Intended", description = "Find out whether Twitter is working or not."},
         new Endpoints {endpoint = "/twitter?username=", name="Twitter Redirect", description="Redirect to a twitter profile."},
-        new Endpoints {endpoint = "/movieclub", name = "Movie Club Endpoints", description = "Find all the #movieClub endpoints"}
+        new Endpoints {endpoint = "/movieclub", name = "Movie Club Endpoints", description = "Find all the #movieClub endpoints"},
+        new Endpoints {endpoint = "/alphabet", name = "Frontend Alphabet API", description = "Letters are hard. There's an API for that."}
     };
     return Results.Json(new { endpoints = endpoints });
 });
@@ -120,6 +121,11 @@ app.MapGet("/weather", async () =>
 app.MapGet("/elbowfetish", () =>
 {
     return Results.Redirect("https://twitter.com/LaFemmeFrank");
+});
+
+app.MapGet("/alphabet", () =>
+{
+    return Results.Redirect("https://www.costcobros.com/PaaS/alphabet");
 });
 
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/BenjaminMuses" }));
