@@ -28,7 +28,8 @@ app.MapGet("/", () =>
         new Endpoints {endpoint = "/istwitterfunctioningasintended", name = "Is Twitter Functioning as Intended", description = "Find out whether Twitter is working or not."},
         new Endpoints {endpoint = "/twitter?username=", name="Twitter Redirect", description="Redirect to a twitter profile."},
         new Endpoints {endpoint = "/movieclub", name = "Movie Club Endpoints", description = "Find all the #movieClub endpoints"},
-        new Endpoints {endpoint = "/alphabet", name = "Frontend Alphabet API", description = "Letters are hard. There's an API for that."}
+        new Endpoints {endpoint = "/alphabet", name = "Frontend Alphabet API", description = "Letters are hard. There's an API for that."},
+        new Endpoints {endpoint = "/todayisnot", name = "Today Is Not", description = "Find out what day it isn't"}
     };
     return Results.Json(new { endpoints = endpoints });
 });
@@ -128,7 +129,7 @@ app.MapGet("/alphabet", () =>
     return Results.Redirect("https://www.costcobros.com/PaaS/alphabet");
 });
 
-app.MapGet("/whatdayitisnot", () =>
+app.MapGet("/todayisnot", () =>
 {
     string today = randomize.DayItIsnt.response();
     string response = "Today is not " + today;
