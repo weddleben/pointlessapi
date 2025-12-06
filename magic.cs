@@ -75,4 +75,46 @@ namespace randomize
             return responses[index];
         }
     }
+
+    class DayItIsnt
+    {
+        private static List<string> days = new List<string>
+            {
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            };
+        
+        private static string getToday()
+        {
+            DateTime date = DateTime.Now;
+            string today = date.DayOfWeek.ToString();
+            return today;
+        }
+
+        private static int getListIndex()
+        {
+            int length = days.Count();
+            Random random = new Random();
+            int index = random.Next(0, length);   
+            return index;
+        }
+
+        public static string response()
+        {
+            int index = getListIndex();
+            string today = getToday();
+            string day = days[index];
+            if (today != day)
+            {
+                return day;
+            }
+            return response();
+        }
+        
+    }
 }

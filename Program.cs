@@ -128,6 +128,13 @@ app.MapGet("/alphabet", () =>
     return Results.Redirect("https://www.costcobros.com/PaaS/alphabet");
 });
 
+app.MapGet("/whatdayitisnot", () =>
+{
+    string today = randomize.DayItIsnt.response();
+    string response = "Today is not " + today;
+    return Results.Json(new {response = response});
+});
+
 app.MapFallback(() => Results.NotFound(new { Message = "What are you looking for?? Suggest new pointless endpoint ideas to: twitter.com/BenjaminMuses" }));
 
 app.Run();
