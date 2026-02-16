@@ -19,7 +19,7 @@ app.MapGet("/", () =>
 {
     var endpoints = new List<Endpoints>
     {
-        new Endpoints {endpoint = "/", name = "Home", description = "Welcome to my pointless API"},
+        new Endpoints {endpoint = "/", name = "Home", description = "Welcome to pointless API."},
         new Endpoints {endpoint = "/weather", name = "Random Weather", description = "Get the current weather from a random city in the USA."},
         new Endpoints {endpoint = "/magic8", name="Magic 8 Ball", description = "Get the answer to all your burning questions."},
         new Endpoints {endpoint = "/talktothehand", name="Talk to the Hand (no)", description="There's always another way to say no."},
@@ -31,7 +31,8 @@ app.MapGet("/", () =>
         new Endpoints {endpoint = "/alphabet", name = "Frontend Alphabet API", description = "Letters are hard. There's an API for that."},
         new Endpoints {endpoint = "/todayisnot", name = "Today Is Not", description = "Find out what day it isn't"}
     };
-    return Results.Json(new { endpoints = endpoints });
+    var about = new About().about;
+    return Results.Json(new { about = about, endpoints = endpoints });
 });
 
 app.MapMethods("/", new[] { "POST", "PUT", "DELETE", "PATCH", "OPTIONS", "HEAD" }, (HttpContext context) =>
